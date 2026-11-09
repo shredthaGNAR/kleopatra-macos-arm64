@@ -4,6 +4,10 @@ An experimental, unofficial macOS arm64 build of **Kleopatra 26.08.1**.
 
 [Website](https://shredthagnar.github.io/kleopatra-macos-arm64/) · [Downloads](https://github.com/shredthaGNAR/kleopatra-macos-arm64/releases) · [Report an issue](https://github.com/shredthaGNAR/kleopatra-macos-arm64/issues)
 
+## Revision 2: Dock icon fix
+
+The app now keeps its default red-haired Kleopatra icon in the Dock after launch. To upgrade from r1, quit Kleopatra and replace the 26.08.1 app in Applications with the copy from the [r2 DMG](https://github.com/shredthaGNAR/kleopatra-macos-arm64/releases/download/26.08.1-macos-arm64-r2/Kleopatra-26.08.1-macos-arm64-r2.dmg). No key migration or backend repair is needed when using this DMG.
+
 ## Install
 
 1. Install native Apple Silicon [Homebrew](https://brew.sh), if needed.
@@ -53,3 +57,7 @@ These scripts use the current KDE Craft recipes and are not a fully pinned, repr
 ## Upstream and source
 
 Kleopatra and its dependencies are maintained by their respective upstream projects. See [SOURCES.md](SOURCES.md) for source locations and [NOTICE.md](NOTICE.md) for attribution. This repository contains packaging scripts and local changes, not a complete mirror of all bundled dependency source code.
+
+### Dock icon change for source builders
+
+The r2 binary is the repaired r1 build with the single application-wide Qt icon override skipped on arm64 macOS, then ad-hoc re-signed. For a new source build, apply the equivalent [source patch](patches/macos-keep-bundle-icon.patch) to the unpacked Kleopatra 26.08.1 source tree before compiling it. It preserves the original theme behavior on other platforms. The existing Craft installer does not automatically apply this patch.
